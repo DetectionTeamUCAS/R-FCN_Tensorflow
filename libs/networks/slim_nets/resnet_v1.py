@@ -121,8 +121,7 @@ def resnet_v1(inputs,
               include_root_block=True,
               spatial_squeeze=False,
               reuse=None,
-              scope=None,
-              rate=1):
+              scope=None):
   """Generator for v1 ResNet models.
 
   This function generates a family of ResNet v1 models. See the resnet_v1_*()
@@ -194,7 +193,7 @@ def resnet_v1(inputs,
             output_stride /= 4
           net = resnet_utils.conv2d_same(net, 64, 7, stride=2, scope='conv1')
           net = slim.max_pool2d(net, [3, 3], stride=2, scope='pool1')
-        net = resnet_utils.stack_blocks_dense(net, blocks, output_stride, rate=rate)
+        net = resnet_utils.stack_blocks_dense(net, blocks, output_stride)
         if global_pool:
           # Global average pooling.
           net = tf.reduce_mean(net, [1, 2], name='pool5', keep_dims=True)

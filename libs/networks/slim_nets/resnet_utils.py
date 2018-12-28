@@ -124,7 +124,7 @@ def conv2d_same(inputs, num_outputs, kernel_size, stride, rate=1, scope=None):
 
 @slim.add_arg_scope
 def stack_blocks_dense(net, blocks, output_stride=None,
-                       outputs_collections=None, rate=1):
+                       outputs_collections=None):
   """Stacks ResNet `Blocks` and controls output feature density.
 
   First, this function creates scopes for the ResNet in the form of
@@ -169,7 +169,7 @@ def stack_blocks_dense(net, blocks, output_stride=None,
   current_stride = 1
 
   # The atrous convolution rate parameter.
-  # rate = 1
+  rate = 1
 
   for block in blocks:
     with tf.variable_scope(block.scope, 'block', [net]) as sc:
